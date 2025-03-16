@@ -376,9 +376,9 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
+          section: "News",},{id: "projects-dendrite-networks",
+          title: 'Dendrite Networks',
+          description: "Simulation of Dendrite Growth with Diffusion-Limited Aggregation",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project.html";
             },},{id: "projects-project-2",
