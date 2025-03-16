@@ -28,4 +28,4 @@ latest_posts:
 
 Hi, this is Lukas! I'm in the final stages of my PhD in Physics, which I pursued at Dresden University of Technnology (Germany) and partly Stanford Universtiy (US). I worked on a certain type of carbon-based transistors, so-called organic electrochemical transistors, which are interesting for neuromorphic computing. In particular, I worked on a thermoydnamic model that aimed to understand the memristive behavior of these sytems. I also used some quantum mechanical modeling to understand the underyling symmetry breaks.
 
-I'm a very curious mind and think about a broad range of subjects, but it most often converges to some mixture of thermodynamics, information theory, and artificial conciousness intelligence. I'm generally interested in non-reductionist models and complex systems theory.
+I'm a very curious mind and think about a broad range of subjects, but it most often converges to some mixture of thermodynamics, information theory, and artificial, concious, intelligence. I'm generally interested in non-reductionist models and complex systems theory.
