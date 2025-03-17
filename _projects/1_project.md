@@ -10,94 +10,42 @@ related_publications: true
 
 # Dendrite Networks with Diffusion-Limited Aggregation
 
-This project implements a cellular automaton model for simulating dendrite growth through diffusion-limited aggregation (DLA). The simulation creates beautiful, fractal-like structures that resemble natural dendrite formations.
+I use a cellular automaton model to simulate dendrite growth in terms of diffusion-limited aggregation (DLA). It is implemented via Margolus shuffling, which ensures isotropic diffusion under information conservation, while also being parallelizable.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/dla_gaussian_ac_field.GIF" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_gaussian_ac_field.GIF" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Visualization of dendrite growth using diffusion-limited aggregation with a horizontal bias field.
+    Diffusion-limited aggregation under a horizintal AC bias (Gaussian around center). The colorbar shows normalized degree centrality. 
 </div>
 
-## Key Features
+## The Margolus Shuffling Algorithm
 
-- **Margolus Shuffling Algorithm**: Implements efficient, isotropic diffusion by using the Margolus neighborhood approach
+
+This project uses cellular automata (CA), where we consider a discrete grid of cells, eaching having a finite set of possible states. The system evolves according to fixed rules based on local cell neighborhoods. There are multiple ways of how the neighborhood can be considered, for example in terms of the Von Neumann or Moore neighboorhod. 
+
+The Von Neumann neighborhood consists of a central cell and its four adjacent neighbors (up, down, left, and right). The Moore neighboorhod extend to the eight surrounding cells, so including the diagonals. This is also what's used in [Conway's Game of Life](https://playgameoflife.com/). The Margolus neighborhood partitions the grid into 2×2 blocks and updates them synchronously. This partition shifts on alternating steos, allowing for reversible dynamics. 
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/neighrborhoods.pdf" title="Neighborhoods in Cellular Automaton" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Von Neumann, Moore, and Margolus neighborhood.
+</div>
+
+
+## Some Facts
+
+- **Margolus Shuffling**: Implements efficient, isotropic diffusion by using the Margolus neighborhood approach
 - **Directional Bias**: Introduces a horizontal bias field to simulate preferential growth along a specific axis
 - **Tunable Parameters**: Allows for experimentation with different growth conditions and field strengths
 - **Visualization**: Real-time visualization of the growing dendrite structures
 
-## Technical Implementation
 
-The simulation uses a cellular automaton approach where particles move randomly through diffusion until they encounter and stick to an existing structure. The Margolus shuffling algorithm is particularly important as it ensures:
-
-1. Isotropic diffusion (equal probability in all directions)
-2. Conservation of particle number
-3. Computational efficiency
-
-<div class="row">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/margolus_diagram.jpg" title="Margolus neighborhood diagram" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/dla_closeup.jpg" title="Close-up of dendrite structure" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Left: Illustration of the Margolus neighborhood used for particle diffusion. Right: Close-up view of the fractal-like structure that emerges.
-</div>
-
-## Cellular Automata Foundation
-
-This project is fundamentally built on cellular automata principles, where:
-
-- The simulation space is divided into a discrete grid of cells
-- Each cell exists in one of several possible states (empty, particle, or structure)
-- Evolution occurs in discrete time steps according to well-defined rules
-- The state of each cell depends only on its previous state and the states of neighboring cells
-
-The cellular automaton framework provides several advantages for modeling diffusion-limited aggregation:
-
-- **Emergent Complexity**: Simple local rules lead to complex global patterns
-- **Discrete Nature**: Perfect for digital implementation and analysis
-- **Parallelizability**: Each cell update can be computed independently
-- **Rule-Based Evolution**: The system evolves deterministically from initial conditions
-
-The Margolus neighborhood used in this implementation is a specialized cellular automaton technique that divides the grid into 2×2 blocks and applies transformations to these blocks, alternating the block boundaries between time steps. This approach preserves important physical properties like conservation laws while enabling the complex dynamics needed for realistic dendrite formation.
-
-Unlike the more common von Neumann neighborhood (which considers only the four adjacent cells: north, east, south, and west), the Margolus neighborhood operates on 2×2 blocks rather than individual cells. This distinction is crucial for our simulation because:
-
-1. The von Neumann neighborhood typically leads to grid artifacts with strong directional bias along the cardinal directions
-2. The Margolus approach allows for conservation of particles during diffusion, which is physically accurate
-3. While von Neumann neighborhoods process each cell individually based on fixed adjacent cells, Margolus neighborhoods process blocks of cells together, allowing for more complex interactions
-4. The alternating block boundaries in Margolus shuffling prevent the grid orientation from influencing the diffusion pattern, resulting in more realistic isotropic diffusion
-
-This difference is particularly important for diffusion-limited aggregation, where the von Neumann approach would create unrealistic "diamond-shaped" growth patterns aligned with the grid, while the Margolus approach produces the natural-looking fractal structures we observe in real dendrite formation.
-
-## Horizontal Bias Implementation
-
-One of the novel aspects of this implementation is the introduction of a horizontal bias field. This creates directionally-biased growth that mimics natural systems where external forces (like electric or magnetic fields) influence dendrite formation.
-
-The bias is implemented by modifying the transition probabilities in the diffusion process, making particles more likely to move along the horizontal axis. This results in elongated structures that grow preferentially in the horizontal direction.
-
-## Results and Applications
-
-The resulting structures exhibit fascinating fractal properties with potential applications in:
-
-- Modeling electrodeposition processes
-- Understanding crystal growth patterns
-- Simulating neural dendrite formation
-- Generating biologically-inspired artificial structures
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/dla_comparison.jpg" title="Comparison of different bias strengths" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Comparison of dendrite structures with different horizontal bias field strengths.
-</div>
 
 ## Code and Implementation
 
