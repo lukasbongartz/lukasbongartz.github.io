@@ -378,7 +378,7 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "projects-dendrite-networks",
           title: 'Dendrite Networks',
-          description: "",
+          description: "A cellular automaton model simulating dendritic growth with parallized diffusion.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project.html";
             },},{id: "projects-project-2",
