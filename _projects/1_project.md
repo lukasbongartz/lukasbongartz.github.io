@@ -8,8 +8,6 @@ category: work
 related_publications: true
 ---
 
-# Dendrite Networks with Diffusion-Limited Aggregation
-
 I use a cellular automaton (CA) model to simulate the growth of dendretic structures in terms of diffusion-limited aggregation (DLA). The simulation uses Margolus shuffling, which allows for paralllization under conservation of information and isotropic diffusion
 
 <div class="row justify-content-sm-center">
