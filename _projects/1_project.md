@@ -29,8 +29,8 @@ This project uses cellular automata (CA), where we consider a discrete grid of c
 The Von Neumann neighborhood consists of a central cell and its four adjacent neighbors (up, down, left, and right). The Moore neighboorhod extend to the eight surrounding cells, so including the diagonals. This is also what's used in [Conway's Game of Life](https://playgameoflife.com/). The Margolus neighborhood partitions the grid into 2×2 blocks and updates them synchronously. This partition shifts on alternating steos, allowing for reversible dynamics. 
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/neighrborhoods.pdf" title="Neighborhoods in Cellular Automaton" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/neighborhoods.png" title="Neighborhoods in Cellular Automaton" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -38,9 +38,49 @@ The Von Neumann neighborhood consists of a central cell and its four adjacent ne
 </div>
 
 
+## Update rules
+
+The Margolus shuffling algorithm follows these update rules:
+
+1. The grid is partitioned into 2×2 blocks
+2. Within each block, particles can move according to conservation rules
+3. The partition shifts by one cell in both directions on alternating steps
+
+The key point is that the block updates are independent from one another, which allows us to paralllize. 
+
+For the DLA part, we initilize the grid with a fixed seed in the center and randomly distributied particles in a given density. The update rules are quite simple:
+
+If a free particle touches the seed, it sticks. We here consider only neighbors in the _Von Neumann neighborhood_ for sticking.
+
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling demonstration" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Particle diffusion via Margolus algorithm and aggregation. 
+</div>
+
+Larger: 
+
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="Margolus shuffling demonstration" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Demonstration of the Margolus shuffling algorithm. The grid is partitioned into 2×2 blocks (shown by different colors) that shift on alternating steps. Particles move within these blocks while conserving the total number of particles.
+</div>
+
+The stochastic nature of the diffusion process, combined with the deterministic sticking rule, creates the characteristic branching structures.
+
+
+
+
 ## Some Facts
 
-- **Margolus Shuffling**: Implements efficient, isotropic diffusion by using the Margolus neighborhood approach
 - **Directional Bias**: Introduces a horizontal bias field to simulate preferential growth along a specific axis
 - **Tunable Parameters**: Allows for experimentation with different growth conditions and field strengths
 - **Visualization**: Real-time visualization of the growing dendrite structures
