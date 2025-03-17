@@ -41,36 +41,47 @@ The Von Neumann neighborhood consists of a central cell and its four adjacent ne
 The Margolus shuffling algorithm follows these update rules:
 
 {% highlight text %}
-1. Partition the grid into 2×2 blocks
+1. Divide the grid into 2×2 blocks:
+   if time_step % 2 == 0:
+       Start blocks at even coordinates (0,0), (2,0), etc.
+   else:
+       Start blocks at odd coordinates (1,1), (3,1), etc.
 2. For each block:
-   a. Move particles according to conservation rules
-3. Shift the partition by one cell in both directions on alternating steps
+   - Redistribute particles within the block according to update rules
+   - Conserve the total number of particles
+3. Advance to the next time step
+4. Repeat
 {% endhighlight %}
 
 The key point is that the block updates are independent from one another, which allows us to paralllize. 
-For the DLA part, we initilize the grid with a fixed seed in the center and randomly distributied particles in a given density. The update rules are quite simple:
 
-If a free particle touches the seed, it sticks. We here consider only neighbors in the _Von Neumann neighborhood_ for sticking.
+To model the aggregation, we initilize the grid with a (fixed) seed in the center and randomly distributied (free) particles in a given density. The update rules are quite simple:
+
+{% highlight text %}
+1. For each free particle:
+   - If any neighbor is part of aggregate:
+       Join particle to aggregate
+   - Else:
+       Remain free for Margolus shuffling
+2. For remaining free particles:
+   Apply Margolus shuffling rules
+{% endhighlight %}
+We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (left figure). Moving to larger numbers of particls, we get fractals of high complexity (right figure).
 
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Diffusion-limited aggregation." class="img-fluid rounded z-depth-1" %}
+        <div class="caption">
+            Particle diffusion via Margolus algorithm and aggregation. 
+        </div>
     </div>
-</div>
-<div class="caption">
-    Particle diffusion via Margolus algorithm and aggregation. 
-</div>
-
-Expanded to 100 x 100, we get fractals of high complexity:
-
-<div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="Fractals from DLA." class="img-fluid rounded z-depth-1" %}
+        <div class="caption">
+            Fractals from DLA. 
+        </div>
     </div>
-</div>
-<div class="caption">
-    Fractals from DLA. 
 </div>
 
 
@@ -121,6 +132,10 @@ You can explore the full implementation in the [GitHub repository](https://githu
 ## Relevance
 
 This dendrite simulation approach has relevance across several scientific and engineering domains where diffusion-limited processes are fundamental:
+
+### Dielectric Breakdown
+
+...
 
 ### Neuromorphic Computing
 Our diffusion-limited aggregation model is particularly relevant to neuromorphic computing because the physical growth of artificial neural networks can be governed by similar principles. In both our simulation and physical neuromorphic systems, the random walk of particles mimics how material precursors diffuse through a medium before deposition. The directional bias we've implemented parallels how electric fields guide the growth of conductive pathways in physical neural networks. This is crucial for creating self-organizing hardware that can form functional connections without explicit programming. The Margolus neighborhood approach we use captures the local interaction rules that determine how these structures branch and connect, similar to how memristive devices form conductive filaments through ion migration—a diffusion-driven process that changes resistance states based on applied voltage and material properties.
