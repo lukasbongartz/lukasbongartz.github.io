@@ -10,7 +10,7 @@ related_publications: true
 
 # Dendrite Networks with Diffusion-Limited Aggregation
 
-I use a cellular automaton model to simulate dendrite growth in terms of diffusion-limited aggregation (DLA). It is implemented via Margolus shuffling, which ensures isotropic diffusion under information conservation, while also being parallelizable.
+I use a cellular automaton (CA) model to simulate the growth of dendretic structures in terms of diffusion-limited aggregation (DLA). The simulation uses Margolus shuffling, which allows for paralllization under conservation of information and isotropic diffusion
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
@@ -23,10 +23,7 @@ I use a cellular automaton model to simulate dendrite growth in terms of diffusi
 
 ## The Margolus Shuffling Algorithm
 
-
-This project uses cellular automata (CA), where we consider a discrete grid of cells, eaching having a finite set of possible states. The system evolves according to fixed rules based on local cell neighborhoods. There are multiple ways of how the neighborhood can be considered, for example in terms of the Von Neumann or Moore neighboorhod. 
-
-The Von Neumann neighborhood consists of a central cell and its four adjacent neighbors (up, down, left, and right). The Moore neighboorhod extend to the eight surrounding cells, so including the diagonals. This is also what's used in [Conway's Game of Life](https://playgameoflife.com/). The Margolus neighborhood partitions the grid into 2×2 blocks and updates them synchronously. This partition shifts on alternating steps, allowing for reversible dynamics. 
+In cellular automata models, we consider a discrete grid of cells, eaching having a finite set of possible states. The system evolves according to fixed rules based on local cell neighborhoods. There are multiple ways of how the neighborhood can be considered, for example in terms of the Von Neumann or Moore neighboorhod. 
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
@@ -37,14 +34,18 @@ The Von Neumann neighborhood consists of a central cell and its four adjacent ne
     Von Neumann, Moore, and Margolus neighborhood.
 </div>
 
+The Von Neumann neighborhood consists of a central cell and its four adjacent neighbors (up, down, left, right). The Moore neighboorhod extends to the eight surrounding cells, so including the diagonals. This is also what's used in [Conway's Game of Life](https://playgameoflife.com/). The Margolus neighborhood partitions the grid into 2×2 blocks and updates them synchronously. This partition shifts on alternating steps, allowing for reversible dynamics. 
 
-## Update rules
+## Margolus shuffling
 
 The Margolus shuffling algorithm follows these update rules:
 
-1. The grid is partitioned into 2×2 blocks
-2. Within each block, particles can move according to conservation rules
-3. The partition shifts by one cell in both directions on alternating steps
+{% highlight text %}
+1. Partition the grid into 2×2 blocks
+2. For each block:
+   a. Move particles according to conservation rules
+3. Shift the partition by one cell in both directions on alternating steps
+{% endhighlight %}
 
 The key point is that the block updates are independent from one another, which allows us to paralllize. 
 For the DLA part, we initilize the grid with a fixed seed in the center and randomly distributied particles in a given density. The update rules are quite simple:
