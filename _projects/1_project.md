@@ -3,7 +3,7 @@ layout: page
 title: Dendrite Networks
 description: 
 #Simulation of Dendrite Growth with Diffusion-Limited Aggregation
-img: assets/img/dla_figure.gif
+img: assets/img/projects/dendrites/dla_figure.png
 importance: 1
 category: work
 related_publications: true
@@ -15,7 +15,7 @@ I use a cellular automaton (CA) model to simulate the growth of dendretic struct
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_gaussian_ac_field.gif" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_gaussian_ac_field.GIF" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -56,7 +56,7 @@ The Margolus shuffling algorithm follows these update rules:
 
 The key point is that the block updates are independent from one another, which allows us to paralllize. 
 
-To model the aggregation, we initilize the grid with a (fixed) seed in the center and randomly distributied (free) particles in a given density. The update rules are quite simple:
+To model aggregation, we initilize the grid with a (fixed) seed in the center and randomly distributied (free) particles in a given density. The update rules are quite simple:
 
 {% highlight text %}
 1. For each free particle:
