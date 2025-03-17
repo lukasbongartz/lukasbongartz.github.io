@@ -378,7 +378,7 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "projects-dendrite-networks",
           title: 'Dendrite Networks',
-          description: "Simulation of Dendrite Growth with Diffusion-Limited Aggregation",
+          description: "",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project.html";
             },},{id: "projects-project-2",
