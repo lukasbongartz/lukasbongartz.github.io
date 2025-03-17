@@ -67,26 +67,29 @@ For each free particle:
 We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (left figure). Moving to larger numbers of particls, we get fractals of high complexity (right figure).
 
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Diffusion-limited aggregation." class="img-fluid rounded z-depth-1" %}
+
+
+
+<div class="row">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="Fractals from DLA." class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    Left: Particle diffusion via Margolus algorithm and aggregation. Right: Fractals from DLA.
-</div>
 
 
 
+
+## Model Extension
+
+We can now extend this model by introducing two additional parameter:
+1. We introduce a bias, making diffusion more favorable along a certain axis.
+2. We introduce a sticking probability, bringing the aggregation process closer to the one seen in natural systems.
 
 ## Some Facts
 
-- **Directional Bias**: Introduces a horizontal bias field to simulate preferential growth along a specific axis
-- **Tunable Parameters**: Allows for experimentation with different growth conditions and field strengths
-- **Visualization**: Real-time visualization of the growing dendrite structures
 
  // Start of Selection  
 {% highlight python linenos %}
