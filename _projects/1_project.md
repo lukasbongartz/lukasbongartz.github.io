@@ -1,8 +1,7 @@
 ---
 layout: page
 title: Dendrite Networks
-description: 
-#Simulation of Dendrite Growth with Diffusion-Limited Aggregation
+description: A cellular automaton model simulating dendritic growth with parallized diffusion. 
 img: assets/img/projects/dendrites/dla_figure.png
 importance: 1
 category: work
@@ -59,13 +58,11 @@ The key point is that the block updates are independent from one another, which 
 To model aggregation, we initilize the grid with a (fixed) seed in the center and randomly distributied (free) particles in a given density. The update rules are quite simple:
 
 {% highlight text %}
-1. For each free particle:
+For each free particle:
    - If any neighbor is part of aggregate:
        Join particle to aggregate
    - Else:
        Remain free for Margolus shuffling
-2. For remaining free particles:
-   Apply Margolus shuffling rules
 {% endhighlight %}
 We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (left figure). Moving to larger numbers of particls, we get fractals of high complexity (right figure).
 
@@ -73,16 +70,13 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (
 <div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Diffusion-limited aggregation." class="img-fluid rounded z-depth-1" %}
-        <div class="caption">
-            Particle diffusion via Margolus algorithm and aggregation. 
-        </div>
     </div>
     <div class="col-sm-8 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="Fractals from DLA." class="img-fluid rounded z-depth-1" %}
-        <div class="caption">
-            Fractals from DLA. 
-        </div>
     </div>
+</div>
+<div class="caption">
+    Left: Particle diffusion via Margolus algorithm and aggregation. Right: Fractals from DLA.
 </div>
 
 
