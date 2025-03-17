@@ -70,10 +70,10 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (
 
 <div class="row">
     <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA_0" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
