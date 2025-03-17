@@ -1,8 +1,9 @@
 ---
 layout: page
 title: Dendrite Networks
-description: Simulation of Dendrite Growth with Diffusion-Limited Aggregation
-img: assets/img/dla_gaussian_ac_field.GIF
+description: 
+#Simulation of Dendrite Growth with Diffusion-Limited Aggregation
+img: assets/img/dla_figure.gif
 importance: 1
 category: work
 related_publications: true
@@ -14,14 +15,14 @@ I use a cellular automaton (CA) model to simulate the growth of dendretic struct
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_gaussian_ac_field.GIF" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_gaussian_ac_field.gif" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
     Diffusion-limited aggregation under a horizintal AC bias (Gaussian around center). The colorbar shows normalized degree centrality. 
 </div>
 
-## The Margolus Shuffling Algorithm
+## Cellular Automata
 
 In cellular automata models, we consider a discrete grid of cells, eaching having a finite set of possible states. The system evolves according to fixed rules based on local cell neighborhoods. There are multiple ways of how the neighborhood can be considered, for example in terms of the Von Neumann or Moore neighboorhod. 
 
@@ -36,7 +37,7 @@ In cellular automata models, we consider a discrete grid of cells, eaching havin
 
 The Von Neumann neighborhood consists of a central cell and its four adjacent neighbors (up, down, left, right). The Moore neighboorhod extends to the eight surrounding cells, so including the diagonals. This is also what's used in [Conway's Game of Life](https://playgameoflife.com/). The Margolus neighborhood partitions the grid into 2×2 blocks and updates them synchronously. This partition shifts on alternating steps, allowing for reversible dynamics. 
 
-## Margolus shuffling
+## Margolus Shuffling
 
 The Margolus shuffling algorithm follows these update rules:
 
