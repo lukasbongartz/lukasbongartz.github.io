@@ -8,7 +8,9 @@ category: work
 related_publications: true
 ---
 
-I use a cellular automaton (CA) model to simulate the growth of dendretic structures in terms of diffusion-limited aggregation (DLA). The simulation uses Margolus shuffling, which allows for paralllization under conservation of information and isotropic diffusion
+I use a cellular automaton (CA) model to simulate the growth of dendretic structures in terms of diffusion-limited aggregation (DLA). The simulation uses Margolus shuffling, which allows for paralllization under conservation of information and isotropic diffusion. 
+
+[GitHub repository](https://github.com/lukasbongartz/dendrite_sim).
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-8 mt-3 mt-md-0">
@@ -69,10 +71,10 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (
 
 
 <div class="row">
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA_0" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -86,69 +88,39 @@ We can now extend this model by introducing two additional parameter:
 1. We introduce a bias, making diffusion more favorable along a certain axis.
 2. We introduce a sticking probability, bringing the aggregation process closer to the one seen in natural systems.
 
-## Some Facts
+#### 1. Diffusion under Bias
 
 
- // Start of Selection  
-{% highlight python linenos %}
 
-def margolus_shuffle_step(grid, step):
-    height = len(grid)
-    width = len(grid[0])
-
-    x_offset = 0 if (step % 2 == 0) else 1
-    y_offset = 0 if (step % 2 == 0) else 1
-
-    for y in range(y_offset, height - 1, 2):
-        for x in range(x_offset, width - 1, 2):
-            # Extract the 2×2 block
-            a = grid[y][x]
-            b = grid[y][x + 1]
-            c = grid[y + 1][x]
-            d = grid[y + 1][x + 1]
-
-            grid[y][x]         = c
-            grid[y][x + 1]     = a
-            grid[y + 1][x]     = d
-            grid[y + 1][x + 1] = b
-{% endhighlight %}
+#### 2. Probabilistic Aggregation
 
 
-## Code and Implementation
 
-The simulation is implemented in Python, using NumPy for efficient array operations and Matplotlib for visualization. The core of the algorithm involves:
 
-1. Initializing a grid with seed particles
-2. Implementing the Margolus shuffling for particle diffusion
-3. Applying sticking rules when particles encounter the growing structure
-4. Adding the horizontal bias field to influence growth direction
+## Parallels in Nature
 
-You can explore the full implementation in the [GitHub repository](https://github.com/lukasbongartz/dendrite_sim).
+While being computationally rather simple, this CA model is reminiscent of many processes throughout nature.
 
-## Relevance
-
-This dendrite simulation approach has relevance across several scientific and engineering domains where diffusion-limited processes are fundamental:
-
-### Dielectric Breakdown
+#### Dielectric Breakdown
 
 ...
 
-### Neuromorphic Computing
+#### Neuromorphic Computing
 Our diffusion-limited aggregation model is particularly relevant to neuromorphic computing because the physical growth of artificial neural networks can be governed by similar principles. In both our simulation and physical neuromorphic systems, the random walk of particles mimics how material precursors diffuse through a medium before deposition. The directional bias we've implemented parallels how electric fields guide the growth of conductive pathways in physical neural networks. This is crucial for creating self-organizing hardware that can form functional connections without explicit programming. The Margolus neighborhood approach we use captures the local interaction rules that determine how these structures branch and connect, similar to how memristive devices form conductive filaments through ion migration—a diffusion-driven process that changes resistance states based on applied voltage and material properties.
 
-### Biological Neural Development
+#### Biological Neural Development
 Neural development is fundamentally a diffusion-limited process where our simulation approach excels. Dendrite growth in biological neurons follows a process remarkably similar to our model: growth factors diffuse through the extracellular matrix, creating concentration gradients that guide dendrite extension. Our simulation's stochastic diffusion with directional bias accurately captures how these chemical gradients influence growth cone navigation. The fractal patterns emerging in our model mirror the self-similar branching observed in real neurons, where each branching decision is influenced by local molecular interactions. The computational efficiency of our Margolus shuffling technique allows us to simulate these complex diffusion dynamics at scales relevant to actual neural development, making it possible to model how subtle changes in the diffusion environment can lead to dramatically different neural architectures—a key insight for understanding both normal development and pathological conditions.
 
-### Semiconductor Manufacturing
+#### Semiconductor Manufacturing
 Semiconductor fabrication increasingly relies on bottom-up self-assembly processes that are inherently diffusion-limited, making our simulation approach highly relevant. In processes like chemical vapor deposition, precursor molecules diffuse through a gas phase before depositing on a substrate—exactly the type of random walk with sticking rules that our model simulates. The horizontal bias field in our implementation mirrors how electric fields or temperature gradients can direct the growth of nanowires and other semiconductor structures. Our approach is particularly valuable because it captures the stochastic nature of these processes while still accounting for directional influences, allowing manufacturers to predict how process parameters will affect the resulting structures. The emergent fractal dimensions in our simulation correspond directly to the surface roughness and porosity of deposited films, which critically affect semiconductor device performance through properties like electron mobility and optical characteristics.
 
-### Electropolymerization
+#### Electropolymerization
 Electropolymerization represents perhaps the most direct application of our diffusion-limited aggregation model. During this process, monomers diffuse through an electrolyte solution toward an electrode where they undergo oxidation and subsequent polymerization—a process perfectly captured by our particle diffusion and aggregation rules. The horizontal bias in our model directly corresponds to the electric field gradient that drives this process, with stronger fields creating more directionally elongated polymer structures. Our simulation accurately reproduces the dendritic growth patterns observed in real electropolymerization, where polymer chains branch out from the electrode surface in fractal patterns. The diffusion-limited nature of this process creates concentration gradients that our model captures through the probabilistic movement of particles. By adjusting parameters like diffusion rate and field strength, our simulation can predict how changes in electrolyte concentration, applied voltage, and electrode geometry will affect the resulting polymer morphology—insights that are difficult to obtain through experimental methods alone but crucial for optimizing electropolymerization for applications in sensors, actuators, and energy storage devices.
 
-### Self-Organizing Systems in Ecology
+#### Self-Organizing Systems in Ecology
 Our dendrite simulation approach provides remarkable insights into self-organizing ecological systems, particularly in vegetation pattern formation in semi-arid ecosystems. These ecosystems exhibit striking regular patterns of vegetation alternating with bare soil—a phenomenon driven by diffusion-limited resource distribution. Our model excels at capturing this process because the core mechanism is fundamentally similar: water and nutrients diffuse through soil, with plants acting as "sticky" aggregation points that deplete resources in their immediate vicinity while benefiting from resources at greater distances. The horizontal bias component of our simulation perfectly models how topographical gradients influence water flow and subsequent vegetation growth patterns. What makes our approach particularly powerful for modeling these systems is the Margolus neighborhood implementation, which efficiently captures the short-range facilitation (plants helping nearby plants by improving soil conditions) and long-range competition (plants competing for scarce water resources) that characterize these ecosystems. The emergent fractal patterns in our simulation closely match the spatial distributions observed in real tiger bush, spotted vegetation, and labyrinth patterns found in nature. By adjusting diffusion rates and bias strength, our model can predict how climate change might alter these self-organizing vegetation patterns—a critical tool for understanding ecosystem resilience and potential tipping points in these fragile environments.
 
-### Cellular Automata Theory and Applications
+#### Cellular Automata Theory and Applications
 This project contributes to the broader field of cellular automata research by demonstrating how specialized CA rules can model complex physical phenomena. While traditional cellular automata like Conway's Game of Life use fixed neighborhood patterns, our implementation showcases the power of the Margolus neighborhood for modeling physical systems with conservation laws. The project demonstrates how cellular automata can bridge the gap between discrete computational models and continuous physical processes, providing insights into how simple rules can generate complex emergent behaviors. Our implementation also shows how cellular automata can be modified to incorporate directional biases while maintaining their fundamental discrete nature, expanding the theoretical toolkit for CA researchers and practitioners.
 
 ## Future Work
