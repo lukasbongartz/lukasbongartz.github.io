@@ -26,6 +26,10 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi, this is Lukas! I'm in the final stages of my PhD in Physics, which I pursued at Dresden University of Technnology (Germany) and partly Stanford Universtiy (US). I worked on a certain type of carbon-based transistors, so-called organic electrochemical transistors, which are interesting for neuromorphic computing. In particular, I worked on a thermoydnamic model that aimed to understand the memristive behavior of these sytems. I also used some quantum mechanical modeling to understand the underyling symmetry breaks.
+Hi, this is Lukas! I'm in the final stages of my PhD in Physics, which I pursued at Dresden University of Technology (Germany) and partly Stanford University (US).
 
-I'm a very curious mind and think about a broad range of subjects, but it most often converges to some mixture of thermodynamics, information theory, and artificial, concious, intelligence. I'm generally interested in non-reductionist models and complex systems theory.
+My PhD studies focus on a certain type of carbon-based transistors, so-called organic electrochemical transistors, which are interesting for neuromorphic computing and brain-machine interfacing. In particular, I worked on a thermodynamic model to understand the memristive behavior of these systems, which I supplemented by quantum mechanical methods. I also work on a tensor and Markov model that allows me to simulate the semiconductor in a coarse-grained fashion, both in and out of equilibrium.
+
+I also hold a second Master's degree in Economics from FU Hagen, where I learned to appreciate the astonishing resemblance between models in finance and physics. I completed my final thesis at the chair of investment theory and business valuation.
+
+I'm a curious mind and think about a broad range of subjects, but it most often converges to some mixture of thermodynamics, information theory, and artificial, conscious intelligence. This also connects to my general interest in non-reductionist world models and complex systems theory.

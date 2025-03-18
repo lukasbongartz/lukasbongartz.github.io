@@ -64,13 +64,10 @@ For each free particle:
    - Else:
        Remain free for Margolus shuffling
 {% endhighlight %}
-We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (left figure). Moving to larger numbers of particls, we get fractals of high complexity (right figure).
+We here consider only neighbors in the _Von Neumann neighborhood_ for sticking. Moving to larger numbers of particls, we get fractals of high complexity.
 
 
-
-
-
-<div class="row">
+<div class="row justify-content-sm-center">
     <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
     </div>
@@ -78,7 +75,9 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking (
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA_0" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-
+<div class="caption">
+    Left: Margolus shuffling and aggregation using Von Neumann neighborhood. Right: Fractal aggregation for a system of 100 free particles. 
+</div>
 
 
 
@@ -90,11 +89,9 @@ We can now extend this model by introducing two additional parameter:
 
 #### 1. Diffusion under Bias
 
-
-
 #### 2. Probabilistic Aggregation
 
-
+## Network Analysis
 
 
 ## Parallels in Nature
@@ -132,5 +129,3 @@ Potential extensions to this project include:
 - Parallelizing the simulation for larger scale structures
 - Exploring different cellular automaton rule sets to model various physical constraints
 - Developing hybrid models that combine cellular automata with differential equations for multi-scale modeling
-
-If you're interested in contributing or have questions about the implementation, please feel free to open an issue or submit a pull request on the GitHub repository.
