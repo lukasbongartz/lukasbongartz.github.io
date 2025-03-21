@@ -91,7 +91,7 @@ We can now extend this model by introducing two additional parameter:
 1. We introduce a bias, making diffusion more favorable along a certain axis.
 2. We introduce a sticking probability, bringing the aggregation process closer to the one seen in natural systems.
 
-#### 1. Diffusion under Bias
+### 1. Diffusion under Bias
 
 Within each $2 \times 2$ block, we consider a *horizontal* and a *vertical* pair, corresponding to the left/right and top/bottom cells. Transitions in each pair are biased by a field $\mathbf{F} = (F_x, F_y)$ with strength $\alpha$. For $F_x > 0$, the probability of a move to the right is defined as
 
@@ -124,19 +124,16 @@ Vertical moves would follow the same pattern using $F_y$.
 
 
 
-
-Instead of assinging each of 
-
-In each iteration
-
-#### 2. Probabilistic Aggregation
+### 2. Probabilistic Aggregation
 
 ## Network Analysis
 
 
 ## Parallels in Nature
 
-While being computationally rather simple, this CA model is reminiscent of many processes throughout nature.
+The diffusion-limited aggregation as shown here has a plethora of parallels in nature. This seems rather astonishing, given the computationally simple rules on which this is based. For those familiar with the [Wolfram Physics Project](https://www.wolframphysics.org/), however, this should come as little surprise. Here just a few examples: 
+
+
 
 #### Dielectric Breakdown
 
