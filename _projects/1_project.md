@@ -73,8 +73,8 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking. 
 <div class="row justify-content-sm-center">
     <div class="col-sm-12 mt-3 mt-md-0">
         <div class="row">
-            <div class="col-sm-6">
-                {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
+            <div class="col-sm-6 d-flex align-items-center">
+                {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" style="height: 300px; width: 100%; object-fit: contain;" %}
             </div>
             <div class="col-sm-6">
                 {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA with 100 particles" class="img-fluid rounded z-depth-1" %}
@@ -123,7 +123,14 @@ Vertical moves would follow the same pattern using $F_y$.
 
 We can now introduce an oscillating bias and consider the case with two seeds. We let the field decay in the vertical direction by $r^{-2}$ (Coulomb). 
 
-
+<div class="row justify-content-sm-center">
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_ac_bias_inverse_square.png" title="DLA under oscillating bias" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Diffusion-limited aggregation under an oscillating bias and inverse square field decay. 
+</div>
 
 
 
