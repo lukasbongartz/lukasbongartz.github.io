@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: distill
 title: Dendrite Networks
 description: A cellular automaton model simulating dendritic growth with parallized diffusion. 
 img: assets/img/projects/dendrites/dla_figure.png
@@ -53,7 +53,7 @@ The Margolus shuffling algorithm follows these update rules:
 4. Repeat
 {% endhighlight %}
 
-The key point is that the block updates are independent from one another, which allows us to paralllize. 
+The key point is that the block updates are independent from one another, which allows us to parallelize. Meanwhile, it preserves local conservation and reversibility.
 
 To model aggregation, we initilize the grid with a (fixed) seed in the center and randomly distributied (free) particles in a given density. The update rules are quite simple:
 
@@ -72,13 +72,12 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking. 
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA_0" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA with 100 particles" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Left: Margolus shuffling and aggregation using Von Neumann neighborhood. Right: Fractal aggregation for a system of 100 free particles. 
+    Left: Margolus shuffling and aggregation using Von Neumann neighborhood. Right: Diffusion-limited aggregation for a system of 100 free particles.
 </div>
-
 
 
 ## Model Extension
@@ -88,6 +87,32 @@ We can now extend this model by introducing two additional parameter:
 2. We introduce a sticking probability, bringing the aggregation process closer to the one seen in natural systems.
 
 #### 1. Diffusion under Bias
+
+
+
+
+
+
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus_bias.png" title="Diffusion under bias" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_bias.gif" title="DLA under bias" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Left: Diffusion under a horizontal bias. Right: Diffusion-limited aggregation under a bias (periodic boundary conditions).
+</div>
+
+
+
+
+
+Instead of assinging each of 
+
+In each iteration
 
 #### 2. Probabilistic Aggregation
 
