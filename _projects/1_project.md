@@ -18,7 +18,7 @@ I use a cellular automaton (CA) model to simulate the growth of dendretic struct
 [GitHub repository](https://github.com/lukasbongartz/dendrite_sim).
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
+    <div class="col-sm-12 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_gaussian_ac_field.GIF" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -31,7 +31,7 @@ I use a cellular automaton (CA) model to simulate the growth of dendretic struct
 In cellular automata models, we consider a discrete grid of cells, eaching having a finite set of possible states. The system evolves according to fixed rules based on local cell neighborhoods. There are multiple ways of how the neighborhood can be considered, for example in terms of the Von Neumann or Moore neighboorhod. 
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
+    <div class="col-sm-12 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/neighborhoods.png" title="Neighborhoods in Cellular Automaton" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -73,10 +73,10 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking. 
 
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-4 mt-3 mt-md-0">
+    <div class="col-sm-5 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
+    <div class="col-sm-5 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA with 100 particles" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -93,7 +93,7 @@ We can now extend this model by introducing two additional parameter:
 
 ### 1. Diffusion under Bias
 
-Within each $2 \times 2$ block, we consider a *horizontal* and a *vertical* pair, corresponding to the left/right and top/bottom cells. Transitions in each pair are biased by a field $\mathbf{F} = (F_x, F_y)$ with strength $\alpha$. For $F_x > 0$, the probability of a move to the right is defined as
+Within each 2x2 block, we consider a *horizontal* and a *vertical* pair, corresponding to the left/right and top/bottom cells. Transitions in each pair are biased by a field $\mathbf{F} = (F_x, F_y)$ with strength $\alpha$. For $F_x > 0$, the probability of a move to the right is defined as
 
 $$
   p_{\text{right}} \;=\; \frac{ e^{\,\alpha \, F_x} }{ e^{\,\alpha \, F_x} \;+\; 1 }.

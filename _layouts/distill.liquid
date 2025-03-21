@@ -13,46 +13,10 @@
       </style>
     {% endif %}
     
-    <!-- Custom styles for byline modification -->
+    <!-- Custom styles to rename affiliations section -->
     <style>
-      /* GitHub styling to match other sections */
-      d-byline .github-section {
-        grid-column: 2;
-        text-align: left;
-        margin: 0;
-        box-sizing: border-box;
-      }
-      
-      d-byline .github-section h3 {
-        font-size: 0.6rem;
-        font-weight: 400;
-        margin: 0;
-        text-transform: uppercase;
-      }
-      
-      d-byline .github-section a {
-        font-size: 0.8rem;
-        color: rgba(0, 0, 0, 0.8);
-        text-decoration: none;
-      }
-      
-      d-byline .github-section a:hover {
-        text-decoration: underline;
-      }
-
-      /* Adjust the other columns when GitHub is present */
-      d-byline .authors-affiliations {
-        grid-column: 1;
-      }
-      
-      d-byline .published {
-        grid-column: 3;
-      }
-      
-      /* Hide affiliations when empty */
-      d-byline .affiliations:empty,
-      d-byline .affiliations:empty + h3 {
-        display: none;
+      d-byline h3:nth-of-type(2) {
+        content: "GITHUB";
       }
     </style>
   </head>
@@ -67,13 +31,22 @@
           {% for author in page.authors %}
           {
             "author": "{{ author.name }}",
-            "authorURL": "{{ author.url }}"{% if author.affiliations.name %},
+            "authorURL": "{{ author.url }}"
+            {% if page.github_repo %},
+            "affiliations": [
+              {
+                "name": "{{ page.github_repo | split: '/' | last }}",
+                "url": "{{ page.github_repo }}"
+              }
+            ]
+            {% elsif author.affiliations.name %},
             "affiliations": [
               {
                 "name": "{{ author.affiliations.name }}",
                 "url": "{{ author.affiliations.url }}"
               }
-            ]{% endif %}
+            ]
+            {% endif %}
           }{% if forloop.last == false %},{% endif %}
           {% endfor %}
         ],
@@ -109,65 +82,24 @@
       {% if page.authors %}
         <d-byline></d-byline>
         
-        {% if page.github_repo %}
         <script>
           document.addEventListener('DOMContentLoaded', function() {
-            // Ensure the d-byline component is fully loaded
+            // Simple script to rename "AFFILIATIONS" to "GITHUB"
             setTimeout(function() {
               const byline = document.querySelector('d-byline');
-              
               if (byline) {
-                // Get the grid container within the byline
-                const grid = byline.shadowRoot ? 
-                             byline.shadowRoot.querySelector('.byline') : 
-                             byline.querySelector('.byline');
+                const headers = byline.shadowRoot ? 
+                                byline.shadowRoot.querySelectorAll('h3') : 
+                                byline.querySelectorAll('h3');
                 
-                if (grid) {
-                  // Add GitHub section
-                  const githubSection = document.createElement('div');
-                  githubSection.className = 'github-section';
-                  
-                  const githubHeading = document.createElement('h3');
-                  githubHeading.textContent = 'GITHUB';
-                  
-                  const githubLink = document.createElement('a');
-                  githubLink.href = "{{ page.github_repo }}";
-                  githubLink.textContent = "{{ page.github_repo | split: '/' | last }}";
-                  githubLink.target = "_blank";
-                  
-                  githubSection.appendChild(githubHeading);
-                  githubSection.appendChild(githubLink);
-                  
-                  // Find where to insert it - right after authors but before published
-                  const authorsSection = grid.querySelector('.authors-affiliations');
-                  const publishedSection = grid.querySelector('.published');
-                  
-                  if (authorsSection && publishedSection) {
-                    grid.insertBefore(githubSection, publishedSection);
-                    
-                    // Force grid to be 3 columns
-                    grid.style.gridTemplateColumns = "repeat(3, 1fr)";
-                    
-                    // Adjust other sections
-                    authorsSection.style.gridColumn = "1";
-                    githubSection.style.gridColumn = "2";
-                    publishedSection.style.gridColumn = "3";
-                  }
-                  
-                  // Hide affiliations section if empty
-                  const hasAffiliations = {% if page.authors[0].affiliations.name %} true {% else %} false {% endif %};
-                  if (!hasAffiliations) {
-                    const affiliationsHeader = grid.querySelector('h3:nth-of-type(2)');
-                    const affiliationsSection = grid.querySelector('.affiliations');
-                    if (affiliationsHeader) affiliationsHeader.style.display = 'none';
-                    if (affiliationsSection) affiliationsSection.style.display = 'none';
-                  }
+                if (headers && headers.length >= 2) {
+                  // Change the second header from "AFFILIATIONS" to "GITHUB"
+                  headers[1].textContent = "GITHUB";
                 }
               }
-            }, 100); // Small delay to ensure components are loaded
+            }, 100);
           });
         </script>
-        {% endif %}
       {% endif %}
 
       <d-article>
