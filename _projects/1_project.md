@@ -93,7 +93,18 @@ We can now extend this model by introducing two additional parameter:
 
 #### 1. Diffusion under Bias
 
+Within each $2 \times 2$ block, we consider a *horizontal* and a *vertical* pair, corresponding to the left/right and top/bottom cells. Transitions in each pair are biased by a field $\mathbf{F} = (F_x, F_y)$ with strength $\alpha$. For $F_x > 0$, the probability of a move to the right is defined as
 
+$$
+  p_{\text{right}} \;=\; \frac{ e^{\,\alpha \, F_x} }{ e^{\,\alpha \, F_x} \;+\; 1 }.
+$$
+
+For a move to the left, it follows
+
+$$
+  p_{\text{left}} = 1- p_{\text{right}} \;=\; \frac{ e^{-\alpha \, F_x} }{ e^{-\alpha \, F_x} \;+\; 1 }
+$$
+    Vertical moves would follow the same pattern using $F_y$.  
 
 
 
