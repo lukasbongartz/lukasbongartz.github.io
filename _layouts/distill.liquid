@@ -34,6 +34,9 @@
               }{% if forloop.last == false %},{% endif %}
               {% endfor %}
             ],
+            {% if page.github_repo %}
+            "githubUrl": "{{ page.github_repo }}",
+            {% endif %}
             "katex": {
               "delimiters": [
                 {

@@ -6,6 +6,11 @@ img: assets/img/projects/dendrites/dla_figure.png
 importance: 1
 category: work
 related_publications: true
+date: 2025-01-22
+github_repo: https://github.com/lukasbongartz/dendrite_sim
+
+authors:
+  - name: Lukas Bongartz
 ---
 
 I use a cellular automaton (CA) model to simulate the growth of dendretic structures in terms of diffusion-limited aggregation (DLA). The simulation uses Margolus shuffling, which allows for paralllization under conservation of information and isotropic diffusion. 

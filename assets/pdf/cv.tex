@@ -1,0 +1,180 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.6in]{geometry} % Reduced margins
+\usepackage{parskip} % Space between paragraphs
+\setlength{\parindent}{0pt} % No paragraph indentation
+\usepackage{titlesec} % Control section formatting
+\usepackage{array} % Table alignment
+\usepackage{hyperref} % Hyperlinks
+\usepackage{multicol} % Multi-column layout
+\usepackage{enumitem} % Customize lists
+\usepackage{siunitx}
+
+% Section formatting
+\titleformat{\section}{\bfseries\normalsize}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\bfseries\normalsize}{}{0em}{}
+
+% Adjust spacing before and after sections
+\titlespacing{\section}{0pt}{1em}{0.5em}
+\titlespacing{\subsection}{0pt}{0.5em}{0.25em}
+
+% Custom commands for consistency
+\newcommand{\cvheading}[1]{\textbf{\normalsize #1}}
+\newcommand{\cvsubheading}[1]{\textbf{#1}}
+
+% Customize itemize for smaller bullets and aligned indentation
+\newenvironment{cvitemize}{
+    \begin{itemize}[
+        leftmargin=1em,           % Adjust the left margin as needed
+        label=\textbullet,        % Default bullet symbol for first level
+        itemsep=0pt,              % No space between items
+        topsep=0pt,               % No space above the list
+        parsep=0pt,               % No space between paragraphs within items
+        partopsep=0pt             % No additional space when starting a list within a paragraph
+    ]
+    % Customize bullet symbols for different levels
+    \renewcommand{\labelitemi}{\scriptsize\textbullet}   % First level
+    \renewcommand{\labelitemii}{\tiny\textbullet}        % Second level
+    \renewcommand{\labelitemiii}{\tiny\textbullet}       % Third level
+    \renewcommand{\labelitemiv}{\tiny\textbullet}        % Fourth level, if needed
+}{\end{itemize}}
+
+% Optional: Reduce row height globally
+\renewcommand{\arraystretch}{0.9} % Adjust as needed (default is 1)
+
+
+\begin{document}
+\pagestyle{empty}
+% Header with name and contact information
+\begin{center}
+    {\LARGE \textbf{Lukas Bongartz}}\\[0.3em]
+    \small
+    {lukasbongartz@outlook.com} \textbar{} +49 157 88508902 \\
+    \vspace{0.2em}
+    %\hrule height 0.4pt
+\end{center}
+
+\vspace{-0.5em}
+
+% Education Section
+\section*{Education}
+\begin{tabular}{@{}p{0.7\textwidth}r@{}}
+\textbf{PhD, Physics} & \textbf{TU Dresden} \\
+\textit{Aug 2021 -- Apr 2025 (exp.)} & Germany \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Research on carbon-based transistors for neuromorphic computing
+    \item Developed a thermodynamic transistor model (theory, simulation, experiment)
+    \item Leveraged thermodynamics in a single-device noise filter (Schmitt trigger)
+    \item \textit{Currently}:  
+    \begin{cvitemize}
+        \item Building a tensor and Markov model in PyTorch to compute non-equilibrium and noise properties
+        \item Hardware-implementation in probabilistic computing (Bayesian inference)
+    \end{cvitemize}
+\end{cvitemize}} \\
+
+\textbf{PhD Scholar, Applied Physics \& Materials Science} & \textbf{Stanford University} \\
+\textit{Apr 2023 -- Oct 2023} & US \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Studying symmetry breaks in neuromorphic materials with a quantum mechanical transition model
+    \item Coursework with Kwabena Boahen (Brains in Silicon)
+    \item Raised research funding ($>\$\num{30000}$)
+    \item \textit{Private}:  
+    \begin{cvitemize}
+        \item  Worked on an analog chip design for LLM inference (SkyWater)
+        \item  Built noise model in PySpice
+    \end{cvitemize}
+    \end{cvitemize}} \\
+
+\textbf{MS, Economics}  (GPA: 3.8; with distinction) & \textbf{FU Hagen} \\
+\textit{Oct 2021 -- Jul 2024} & Germany \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Business studies alongside PhD
+    \item Focus on quantitative finance (e.g., portfolio optimization)
+\end{cvitemize}} \\
+
+\textbf{MS, (Physical) Chemistry} (GPA: 3.9) & \textbf{Heidelberg University} \\
+\textit{Oct 2018 -- Jul 2021} & Germany \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Extensive curriculum in condensed matter and semiconductor physics
+    \item Major in quantum modeling and molecular dynamics
+    \item Studies on machine learning
+\end{cvitemize}} \\
+
+\textbf{FrontierLab Program, Applied Physics} (GPA: 4.0) & \textbf{Osaka University} \\
+\textit{Sep 2019 -- Sep 2020} & Japan \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Developed an ultra-high-density neural interface
+    \item Raised research funding ($>\$\num{15000}$)
+\end{cvitemize}} \\
+
+\textbf{BS, (Physical) Chemistry} (GPA: 3.4) & \textbf{Heidelberg University} \\
+\textit{Oct 2015 -- Jul 2018} & Germany \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Top 5\% of the year
+    \item Thesis on nanomaterials for transistor devices
+\end{cvitemize}}
+\end{tabular} 
+
+\vspace{-0.5em}
+
+% Experience Section
+\section*{Experience}
+\begin{tabular}{@{}p{0.7\textwidth}r@{}}
+\textbf{Doctoral Researcher} & \textbf{TU Dresden} \\
+\textit{Aug 2021 -- Present} & Germany  \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Instructor for undergraduate experimental physics
+    \item Filed two patents in neuromorphic computing and bioelectronics
+    \item Participant in start-up challenge SPRIN-D (Federal Agency for Disruptive Innovation Germany)
+\end{cvitemize}} \\
+
+\textbf{Teaching Assistant} & \textbf{Heidelberg University} \\
+\textit{Nov 2018 -- Sep 2019} & Germany \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Instructor for multiple undergraduate courses
+    \item Authored the manuscript for a graduate lecture on semiconductors and nanomaterials
+\end{cvitemize}} \\
+
+\textbf{Research Assistant} & \textbf{EnBW Nuclear Energy} \\
+\textit{Aug -- Sep 2017} & Germany \\[-0.3em]
+\multicolumn{2}{@{}p{\textwidth}@{}}{
+\begin{cvitemize}
+    \item Research assistant in nuclear power plant (Philippsburg)
+    \item Developed an analytical protocol and presented it to senior management
+\end{cvitemize}}
+\end{tabular}
+
+\vspace{-0.5em}
+\clearpage
+% Awards Section
+\section*{Awards}
+\begin{tabular}{@{}p{0.1\textwidth} p{0.4\textwidth} p{0.1\textwidth} p{0.4\textwidth}@{}}
+    % First Award
+     {\scriptsize\textbullet}\ Dec 2024 & \textbf{Meiss Award} &  {\scriptsize\textbullet}\ Jan 2021 & \textbf{Scholarship} \\
+    \hspace{1em} & Paper Award in Applied Physics & \hspace{1em} & e-fellows \\
+    
+    % Second Award
+     {\scriptsize\textbullet}\ Apr 2023 & \textbf{Research Scholarship} &  {\scriptsize\textbullet}\ Jul 2020 & \textbf{Best Presentation Award} \\
+    \hspace{1em} & German Academic Exchange Service & \hspace{1em} & Osaka University \\
+    
+    % Third Award
+     {\scriptsize\textbullet}\ Mar 2023 & \textbf{Research Scholarship} &  {\scriptsize\textbullet}\ Aug 2019 & \textbf{Graduate Scholarship} \\
+    \hspace{1em} & Graduate Academy Dresden & \hspace{1em} & German Academic Exchange Service \\
+\end{tabular}
+\vspace{-0.5em}
+
+% Skills and Interests Section
+\section*{Skills \& Interests}
+\cvsubheading{Programming:} Python, PyTorch, MATLAB, SPICE, CAD \\
+\cvsubheading{Languages:} English (fluent), German (native), Japanese (basic), French (basic) \\
+\cvsubheading{Interests:} Strength and endurance sports, artificial intelligence, information theory, complexity science \\
+
+\end{document}
