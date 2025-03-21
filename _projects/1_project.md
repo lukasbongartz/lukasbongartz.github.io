@@ -15,8 +15,6 @@ authors:
 
 I use a cellular automaton (CA) model to simulate the growth of dendretic structures in terms of diffusion-limited aggregation (DLA). The simulation uses Margolus shuffling, which allows for paralllization under conservation of information and isotropic diffusion. 
 
-[GitHub repository](https://github.com/lukasbongartz/dendrite_sim).
-
 <div class="row justify-content-sm-center">
     <div class="col-sm-12 mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_gaussian_ac_field.GIF" title="Dendrite growth simulation" class="img-fluid rounded z-depth-1" %}
@@ -73,11 +71,15 @@ We here consider only neighbors in the _Von Neumann neighborhood_ for sticking. 
 
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-5 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-5 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA with 100 particles" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-12 mt-3 mt-md-0">
+        <div class="row">
+            <div class="col-sm-6">
+                {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus.gif" title="Margolus shuffling" class="img-fluid rounded z-depth-1" %}
+            </div>
+            <div class="col-sm-6">
+                {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_v0.gif" title="DLA with 100 particles" class="img-fluid rounded z-depth-1" %}
+            </div>
+        </div>
     </div>
 </div>
 <div class="caption">
@@ -91,7 +93,7 @@ We can now extend this model by introducing two additional parameter:
 1. We introduce a bias, making diffusion more favorable along a certain axis.
 2. We introduce a sticking probability, bringing the aggregation process closer to the one seen in natural systems.
 
-### 1. Diffusion under Bias
+#### 1. Diffusion under Bias
 
 Within each 2x2 block, we consider a *horizontal* and a *vertical* pair, corresponding to the left/right and top/bottom cells. Transitions in each pair are biased by a field $\mathbf{F} = (F_x, F_y)$ with strength $\alpha$. For $F_x > 0$, the probability of a move to the right is defined as
 
@@ -110,11 +112,11 @@ Vertical moves would follow the same pattern using $F_y$.
 
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus_bias.png" title="Diffusion under bias" class="img-fluid rounded z-depth-1" style="height: 300px; object-fit: cover;" %}
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus_bias.png" title="Diffusion under bias" class="img-fluid rounded z-depth-1" style="height: 300px; width: 100%; object-fit: cover;" %}
     </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_bias.gif" title="DLA under bias" class="img-fluid rounded z-depth-1" style="height: 300px; object-fit: cover;" %}
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_bias.gif" title="DLA under bias" class="img-fluid rounded z-depth-1" style="height: 300px; width: 100%; object-fit: cover;" %}
     </div>
 </div>
 <div class="caption">
@@ -124,9 +126,17 @@ Vertical moves would follow the same pattern using $F_y$.
 
 
 
-### 2. Probabilistic Aggregation
+#### 2. Probabilistic Aggregation
 
 ## Network Analysis
+
+We can treat the dendrite structures as graphs and analyze them using network theory: occupied cells are considered as nodes, which are connected by edges. We can then use the degree centrality metric to measure how connected each node is within the network. For a node $v$, the degree centrality $C_D(v)$ is defined as:
+
+$$
+C_D(v) = \frac{d(v)}{n-1}
+$$
+
+where $d(v)$ is the number of edges connected to node $v$, and $n$ is the total number of nodes in the network. Since we use the von Neumann neighborhood, each node can have a maximum degree of 4.
 
 
 ## Parallels in Nature
