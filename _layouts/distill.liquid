@@ -12,6 +12,49 @@
         {{ page._styles }}
       </style>
     {% endif %}
+    
+    <!-- Custom styles for byline modification -->
+    <style>
+      /* Hide empty affiliations section */
+      d-byline .d-byline-affiliations:empty {
+        display: none;
+      }
+      d-byline .d-byline-affiliations:empty + h3 {
+        display: none;
+      }
+      
+      /* GitHub section styling */
+      d-byline .d-byline-github {
+        grid-column: 3 / span 1;
+        font-size: 0.8rem;
+        line-height: 1.8em;
+      }
+      d-byline .d-byline-github h3 {
+        font-weight: 500;
+        margin: 0;
+        text-transform: uppercase;
+      }
+      d-byline .d-byline-github a {
+        color: rgba(0, 0, 0, 0.8);
+        text-decoration: none;
+      }
+      d-byline .d-byline-github a:hover {
+        text-decoration: underline;
+      }
+      
+      /* Adjust layout for 4 columns */
+      @media(min-width: 768px) {
+        d-byline {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        d-byline h3 {
+          font-size: 0.6rem;
+        }
+        d-byline .authors-affiliations {
+          grid-column-end: 3;
+        }
+      }
+    </style>
   </head>
 
   <d-front-matter>
@@ -34,9 +77,6 @@
           }{% if forloop.last == false %},{% endif %}
           {% endfor %}
         ],
-        {% if page.github_repo %}
-        "githubUrl": "{{ page.github_repo }}",
-        {% endif %}
         "katex": {
           "delimiters": [
             {
@@ -65,63 +105,50 @@
         <h1>{{ page.title }}</h1>
         <p>{{ page.description }}</p>
       </d-title>
+      
       {% if page.authors %}
+        <!-- Override the default d-byline behavior -->
         <d-byline></d-byline>
-        
-        {% if page.github_repo %}
-        <style>
-          /* Add GitHub section to the d-byline component */
-          d-byline .byline-github {
-            grid-column: 1 / -1;
-            font-size: 0.8rem;
-            margin-top: 1rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            padding-top: 0.5rem;
-          }
-          d-byline .byline-github span:first-child {
-            font-weight: 600;
-            text-transform: uppercase;
-          }
-          d-byline .byline-github a {
-            color: #2a6f97;
-            text-decoration: none;
-          }
-          d-byline .byline-github a:hover {
-            text-decoration: underline;
-          }
-          
-          /* Hide Affiliations section if empty */
-          d-byline h3:empty + ul {
-            display: none;
-          }
-          d-byline h3:empty {
-            display: none;
-          }
-        </style>
-        
         <script>
           document.addEventListener('DOMContentLoaded', function() {
-            // Add GitHub repository to the byline
-            const byline = document.querySelector('d-byline');
-            if (byline) {
-              const githubSection = document.createElement('div');
-              githubSection.className = 'byline-github';
-              
-              const githubLabel = document.createElement('span');
-              githubLabel.textContent = 'GitHub: ';
-              
-              const githubLink = document.createElement('a');
-              githubLink.href = "{{ page.github_repo }}";
-              githubLink.textContent = "{{ page.github_repo | replace: 'https://github.com/', '' }}";
-              githubLink.target = "_blank";
-              
-              githubSection.appendChild(githubLabel);
-              githubSection.appendChild(githubLink);
-              byline.appendChild(githubSection);
-            }
+            // Customize the byline after it's been rendered
+            setTimeout(function() {
+              const byline = document.querySelector('d-byline');
+              if (byline) {
+                // Check if affiliations exist
+                const hasAffiliations = {% if page.authors[0].affiliations.name %} true {% else %} false {% endif %};
+                
+                {% if page.github_repo %}
+                // Add GitHub section
+                const githubSection = document.createElement('div');
+                githubSection.className = 'd-byline-github';
+                
+                const githubHeading = document.createElement('h3');
+                githubHeading.textContent = 'GitHub';
+                
+                const githubLink = document.createElement('a');
+                githubLink.href = "{{ page.github_repo }}";
+                githubLink.textContent = "{{ page.github_repo | split: '/' | last }}";
+                githubLink.target = "_blank";
+                
+                githubSection.appendChild(githubHeading);
+                githubSection.appendChild(githubLink);
+                
+                // Insert GitHub section after Published section
+                byline.appendChild(githubSection);
+                {% endif %}
+                
+                // If no affiliations, hide the section completely
+                if (!hasAffiliations) {
+                  const affiliationsHeader = byline.querySelector('h3:nth-of-type(2)');
+                  const affiliationsSection = byline.querySelector('.d-byline-affiliations');
+                  if (affiliationsHeader) affiliationsHeader.style.display = 'none';
+                  if (affiliationsSection) affiliationsSection.style.display = 'none';
+                }
+              }
+            }, 100); // Small delay to ensure the component is rendered
           });
         </script>
-        {% endif %}
       {% endif %}
 
       <d-article>
