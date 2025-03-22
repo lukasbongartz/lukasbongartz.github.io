@@ -111,10 +111,10 @@ Vertical moves would follow the same pattern using $F_y$.
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-6 mt-3 mt-md-0 d-flex align-items-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus_bias.png" title="Diffusion under bias" class="img-fluid rounded z-depth-1" style="height: 300px; width: 100%; object-fit: contain;" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/margolus_bias.png" title="Diffusion under bias" class="img-fluid rounded z-depth-1" style="width: 100%; object-fit: contain;" %}
     </div>
     <div class="col-sm-6 mt-3 mt-md-0 d-flex align-items-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_bias.gif" title="DLA under bias" class="img-fluid rounded z-depth-1" style="height: 300px; width: 100%; object-fit: contain;" %}
+        {% include figure.liquid loading="eager" path="assets/img/projects/dendrites/dla_bias.gif" title="DLA under bias" class="img-fluid rounded z-depth-1" style="width: 100%; object-fit: contain;" %}
     </div>
 </div>
 <div class="caption">
@@ -129,7 +129,7 @@ We can now introduce an oscillating bias and consider the case with two seeds. W
     </div>
 </div>
 <div class="caption">
-    Diffusion-limited aggregation under an oscillating bias and inverse square field decay. 
+    Diffusion-limited aggregation under an oscillating bias and inverse square field decay along the y-axis. 
 </div>
 
 
